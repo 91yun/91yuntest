@@ -31,25 +31,12 @@ next() {
     printf "%-70s\n" "-" | sed 's/\s/-/g'
 }
 
-# 安装依赖
-preinstall()
-{
-	apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && apt-get -y install curl mtr virt-what python
-	yum >/dev/null 2>&1
-	[ $? -le '1' ] && yum -y install which sed curl mtr virt-what python
-	backtime=`date +%Y%m%d`
-	logfilename="test91yun.log"
-	dir=`pwd`
-	IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
-	echo "====开始记录测试信息====">${dir}/$logfilename
-}
 
 echo "服务器提供商（host provider）[default:Enter]"
 read hostp
 echo "开始测试中，会需要点时间，请稍后"
 
-preinstall
+
 _included_benchmarks=""
 
 #创建测试目录
@@ -71,9 +58,33 @@ if [ "$_included_benchmarks" == "" ]; then
 	_included_benchmarks="systeminfo,io,bandwidth,download,traceroute,backtraceroute,allping"
 fi
 
+#预先安装库，如果有进行benchtest就会多安装些东西
+bt="benchtest"
+if [[ $_included_benchmarks == *$bt* ]]
+then
+    apt-get >/dev/null 2>&1
+	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr virt-what python perl automake autoconf time make gcc gdb )
+	yum >/dev/null 2>&1
+	[ $? -le '1' ] && yum -y install which sed curl mtr virt-what python make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes perl
+else
+    apt-get >/dev/null 2>&1
+	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr virt-what python )
+	yum >/dev/null 2>&1
+	[ $? -le '1' ] && yum -y install which sed curl mtr virt-what python
+fi
+
+#要用到的变量
+backtime=`date +%Y%m%d`
+logfilename="test91yun.log"
+dir=`pwd`
+IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
+echo "====开始记录测试信息====">${dir}/$logfilename
+
+
 #取得测试的参数值
 arr=(${_included_benchmarks//,/ })    
-    
+
+#下载执行相应的代码
 for i in ${arr[@]}    
 do 
 	wget -q --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/test/test_code/${i}.sh
@@ -89,4 +100,6 @@ done
 	# echo -e $resultstr | tee -a ${dir}/$logfilename
 # }
 
+#删除目录
+rm -rf ${dir}/91yuntest
 
