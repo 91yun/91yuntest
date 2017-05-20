@@ -8,15 +8,15 @@ benchtest()
 	
 	# Download UnixBench5.1.3
 	if [ -s UnixBench5.1.3.tgz ]; then
-		echo "UnixBench5.1.3.tgz [found]"
+		#echo "UnixBench5.1.3.tgz [found]"
 	else
-		echo "UnixBench5.1.3.tgz not found!!!download now..."
+		#echo "UnixBench5.1.3.tgz not found!!!download now..."
 		if ! wget -qc http://lamp.teddysun.com/files/UnixBench5.1.3.tgz; then
 			echo "Failed to download UnixBench5.1.3.tgz, please download it to ${cur_dir} directory manually and try again."
 			exit 1
 		fi
 	fi
-	tar -xzf UnixBench5.1.3.tgz
+	tar xzf UnixBench5.1.3.tgz
 	cd ${dir}/91yuntest/UnixBench/
 
 	#Run unixbench
