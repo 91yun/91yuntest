@@ -6,7 +6,7 @@ mtrback(){
 
 }
 
-backtracetest()
+backtraceroute()
 {
 	mtrback "14.215.116.1" "广州电信（天翼云）"
 	mtrback "101.227.255.45" "上海电信（天翼云）"
