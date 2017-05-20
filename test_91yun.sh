@@ -41,7 +41,8 @@ preinstall()
 	backtime=`date +%Y%m%d`
 	logfilename="test91yun.log"
 	dir=`pwd`
-	echo "====开始记录测试信息====">$logfilename
+	IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
+	echo "====开始记录测试信息====">${dir}/$logfilename
 }
 
 echo "服务器提供商（host provider）[default:Enter]"
@@ -54,7 +55,6 @@ _included_benchmarks=""
 #创建测试目录
 mkdir -p 91yuntest
 cd 91yuntest
-dir=`pwd`
 
 
 clear
@@ -77,7 +77,7 @@ arr=(${_included_benchmarks//,/ })
 for i in ${arr[@]}    
 do 
 	wget -Nq --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/test/test_code/${i}.sh
-    . ${dir}/${i}.sh
+    . ${dir}/91yuntest/${i}.sh
 	eval ${i}
 done    
 
@@ -85,8 +85,8 @@ done
 #上传文件
 # updatefile()
 # {
-	# resultstr=$(curl -s -T $logfilename "http://test.91yun.org/logfileupload.php")
-	# echo -e $resultstr | tee -a $logfilename
+	# resultstr=$(curl -s -T ${dir}/$logfilename "http://test.91yun.org/logfileupload.php")
+	# echo -e $resultstr | tee -a ${dir}/$logfilename
 # }
 
 
