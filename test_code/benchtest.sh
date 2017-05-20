@@ -1,33 +1,31 @@
 benchtest()
-{
-
-	if [ "$os" == 'centos' ]; then
-		yum -y install make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes python perl
-	else
-		apt-get update
-		apt-get -y install perl python automake autoconf time make gcc gdb
-	fi
+{	
+	next
+	apt-get >/dev/null 2>&1
+	[ $? -le '1' ] && ( apt-get update | apt-get -yq install perl python automake autoconf time make gcc gdb)
+	yum >/dev/null 2>&1
+	[ $? -le '1' ] && yum -yq install make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes python perl
 	
 	# Download UnixBench5.1.3
 	if [ -s UnixBench5.1.3.tgz ]; then
 		echo "UnixBench5.1.3.tgz [found]"
 	else
 		echo "UnixBench5.1.3.tgz not found!!!download now..."
-		if ! wget -c http://lamp.teddysun.com/files/UnixBench5.1.3.tgz; then
+		if ! wget -qc http://lamp.teddysun.com/files/UnixBench5.1.3.tgz; then
 			echo "Failed to download UnixBench5.1.3.tgz, please download it to ${cur_dir} directory manually and try again."
 			exit 1
 		fi
 	fi
 	tar -xzf UnixBench5.1.3.tgz
-	cd UnixBench/
+	cd ${dir}/91yuntest/UnixBench/
 
 	#Run unixbench
-	make
-	echo "===开始测试bench===" | tee -a ../${logfilename}
+	make > /dev/null 2>&1
+	echo "===开始测试bench===" >> ${dir}/${logfilename}
 	./Run
 	benchfile=`ls results/ | grep -v '\.'`
-	cat results/${benchfile} >> ../${logfilename}
-	echo "===bench测试结束===" | tee -a ../${logfilename}	
+	cat results/${benchfile} >> ${dir}/${logfilename}
+	echo "===bench测试结束===" >> ${dir}/${logfilename}	
 	cd ..
 	rm -rf UnixBench5.1.3.tgz UnixBench
 }
