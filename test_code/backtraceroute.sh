@@ -1,7 +1,7 @@
 mtrback(){
 	echo "===测试 [$2] 的回程路由===" | tee -a ${dir}/$logfilename
 	mtr -r -c 10 $1 | tee -a ${dir}/$logfilename
-	echo -e "\n"
+	echo -e "\n\n"
 	echo -e "===回程 [$2] 路由测试结束===\n\n" >> ${dir}/$logfilename
 
 }

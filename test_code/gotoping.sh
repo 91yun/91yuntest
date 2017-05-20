@@ -2,6 +2,7 @@ testping()
 {
 	echo "{start testing $2 ping}" >> ${dir}/$logfilename
 	ping -c 10 $1 | tee -a ${dir}/$logfilename
+	echo -e "\n\n"
 	echo "{end testing}" >> ${dir}/$logfilename
 }
 

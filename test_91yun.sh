@@ -68,7 +68,7 @@ done
 
 #默认参数
 if [ "$_included_benchmarks" == "" ]; then
-	_included_benchmarks="systeminfo,io,bandwidth,download,traceroute,backtraceroute,allping,gotoping"
+	_included_benchmarks="systeminfo,io,bandwidth,download,traceroute,backtraceroute,allping"
 fi
 
 #取得测试的参数值
