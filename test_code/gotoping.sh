@@ -1,8 +1,8 @@
 testping()
 {
-	echo "{start testing $2 ping}" | tee -a ${dir}/$logfilename
+	echo "{start testing $2 ping}" >> ${dir}/$logfilename
 	ping -c 10 $1 | tee -a ${dir}/$logfilename
-	echo "{end testing}" | tee -a ${dir}/$logfilename
+	echo "{end testing}" >> ${dir}/$logfilename
 }
 
 gotoping()

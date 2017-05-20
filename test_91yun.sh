@@ -76,7 +76,7 @@ arr=(${_included_benchmarks//,/ })
     
 for i in ${arr[@]}    
 do 
-	wget -Nq --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/test/test_code/${i}.sh
+	wget -q --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/test/test_code/${i}.sh
     . ${dir}/91yuntest/${i}.sh
 	eval ${i}
 done    
