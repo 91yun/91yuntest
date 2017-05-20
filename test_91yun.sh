@@ -41,7 +41,7 @@ preinstall()
 	backtime=`date +%Y%m%d`
 	logfilename="test91yun.log"
 	dir=`pwd`
-	echo "====开始记录测试信息====">${dir}/$logfilename
+	echo "====开始记录测试信息====">$logfilename
 }
 
 echo "服务器提供商（host provider）[default:Enter]"

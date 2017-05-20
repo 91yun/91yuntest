@@ -16,7 +16,7 @@ bandwidth()
 
 
 	#写入日志文件
-	echo "===开始测试带宽===">>${dir}/$logfilename
-	echo "$bd">>${dir}/$logfilename
-	echo -e "===带宽测试结束==\n\n">>${dir}/$logfilename
+	echo "===开始测试带宽===">>$logfilename
+	echo "$bd">>$logfilename
+	echo -e "===带宽测试结束==\n\n">>$logfilename
 }

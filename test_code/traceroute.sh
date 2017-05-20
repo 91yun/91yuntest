@@ -21,9 +21,9 @@ mtrgo(){
 	echo -e "\n\n"
 	
 	#计入日志文件
-	echo "===start test traceroute from [$nodename]===">>${dir}/$logfilename
-	echo -e $mtrgostrback | awk -F '^' '{print $1,"\t",$2,"\t",$3,"\t",$4,"\t",$5}'>>${dir}/$logfilename
-	echo -e "=== [$nodename] traceroute test ended===\n\n">>${dir}/$logfilename
+	echo "===start test traceroute from [$nodename]===">>$logfilename
+	echo -e $mtrgostrback | awk -F '^' '{print $1,"\t",$2,"\t",$3,"\t",$4,"\t",$5}'>>$logfilename
+	echo -e "=== [$nodename] traceroute test ended===\n\n">>$logfilename
 }
 
 
