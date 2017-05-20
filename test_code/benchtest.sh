@@ -2,7 +2,7 @@ benchtest()
 {	
 	next
 	apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && ( apt-get update | apt-get -y -q install perl python automake autoconf time make gcc gdb)
+	[ $? -le '1' ] && ( apt-get update | apt-get -y -q install perl python automake autoconf time make gcc gdb )
 	yum >/dev/null 2>&1
 	[ $? -le '1' ] && yum -y -q install make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes python perl
 	
