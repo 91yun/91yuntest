@@ -20,7 +20,7 @@ ping_test(){
 	echo -e $pingstrback_all | awk -F '^' '{printf("%-3s\t%-30s\t%-15s\t%-20s\t%-3s\t%-7s\t%-7s\t%-7s\t%-3s\n",$1,$2,$3,$4,$5,$6,$7,$8,$9)}' >> ${dir}/$logfilename
 	echo -e "===all ping end===\n\n" >> ${dir}/$logfilename
 	echo "===ping show===" >> ${dir}/$logfilename
-	echo -e $pingstrback | awk -F '^' '{printf("%-10s%-20s\t\t%-10s%-20s\t\t%-10s%-10s\n",$1,$3,$4,$5,$6,$7)}'
+	echo -e $pingstrback | awk -F '^' '{printf("%-10s%-30s\t%-10s%-30s\t%-10s%-10s\n",$1,$3,$4,$5,$6,$7)}'
 	echo -e $pingstrback | awk -F '^' '{printf("%-10s\t%-10s\t%-30s\t%-10s\t%-30s\t%-30s\t%-30s\n",$1,$2,$3,$4,$5,$6,$7)}'>>${dir}/$logfilename
 	echo -e "===ping show end===\n\n" >> ${dir}/$logfilename
 	echo "===进行全国PING测试结束===">>${dir}/$logfilename
