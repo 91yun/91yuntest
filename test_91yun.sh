@@ -101,7 +101,7 @@ updatefile()
 	resultstr=$(curl -s -T ${dir}/$logfilename "http://test.91yun.org/logfileupload.php")
 	echo -e $resultstr | tee -a ${dir}/$logfilename
 }
-#updatefile
+updatefile
 
 #删除目录
 rm -rf ${dir}/91yuntest
