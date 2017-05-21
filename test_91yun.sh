@@ -53,7 +53,7 @@ if [ "$_included_benchmarks" == "" ]; then
 	_included_benchmarks="io,bandwidth,download,traceroute,backtraceroute,allping"
 fi
 
-_included_benchmarks="systeminfo"${_included_benchmarks}
+_included_benchmarks="systeminfo,"${_included_benchmarks}
 
 #预先安装库，如果有进行benchtest就会多安装些东西
 bt="benchtest"
