@@ -39,12 +39,7 @@ echo "开始测试中，会需要点时间，请稍后"
 
 _included_benchmarks=""
 
-#创建测试目录
-mkdir -p 91yuntest
-cd 91yuntest
 
-
-clear
 
 #取参数
 while getopts "i:" opt; do
@@ -80,6 +75,11 @@ dir=`pwd`
 IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
 echo "====开始记录测试信息====">${dir}/$logfilename
 
+#创建测试目录
+mkdir -p 91yuntest
+cd 91yuntest
+
+clear
 
 #取得测试的参数值
 arr=(${_included_benchmarks//,/ })    
@@ -94,11 +94,12 @@ done
 
 
 #上传文件
-# updatefile()
-# {
-	# resultstr=$(curl -s -T ${dir}/$logfilename "http://test.91yun.org/logfileupload.php")
-	# echo -e $resultstr | tee -a ${dir}/$logfilename
-# }
+updatefile()
+{
+	resultstr=$(curl -s -T ${dir}/$logfilename "http://test.91yun.org/logfileupload.php")
+	echo -e $resultstr | tee -a ${dir}/$logfilename
+}
+#updatefile
 
 #删除目录
 rm -rf ${dir}/91yuntest
