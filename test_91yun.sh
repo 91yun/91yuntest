@@ -64,7 +64,7 @@ mtrgo(){
 	mtrgostr=$(curl -s "$mtrurl")
 	#echo $mtrgostr >> $logfilename
 	echo $mtrgostr > mtrlog.log
-	mtrgostrback=$(curl -s -d @mtrlog.log "http://test.91yun.org/traceroute.php")
+	mtrgostrback=$(curl -s -d @mtrlog.log "https://test.91yun.org/traceroute.php")
 	rm -rf mtrlog.log
 	echo -e $mtrgostrback | awk -F '^' '{printf("%-2s\t%-16s\t%-35s\t%-30s\t%-25s\n",$1,$2,$3,$4,$5)}' | tee -a $logfilename
 	echo -e "=== [$nodename] 路由测试结束===\n\n" | tee -a $logfilename	
@@ -85,8 +85,8 @@ ping_test(){
 	pingstr=$(curl -s "$pingurl")
 	#echo $pingstr >> $logfilename
 	echo $pingstr > pingstr.log
-	pingstrback_all=$(curl -s -d @pingstr.log "http://test.91yun.org/ping.php?ping")
-	pingstrback=$(curl -s -d @pingstr.log "http://test.91yun.org/ping.php")
+	pingstrback_all=$(curl -s -d @pingstr.log "https://test.91yun.org/ping.php?ping")
+	pingstrback=$(curl -s -d @pingstr.log "https://test.91yun.org/ping.php")
 	rm -rf pingstr.log
 	echo "===all ping start===" >> $logfilename
 	echo -e $pingstrback_all | awk -F '^' '{printf("%-3s\t%-30s\t%-15s\t%-20s\t%-3s\t%-7s\t%-7s\t%-7s\t%-3s\n",$1,$2,$3,$4,$5,$6,$7,$8,$9)}' >> $logfilename	
