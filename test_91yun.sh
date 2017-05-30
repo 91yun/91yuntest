@@ -340,7 +340,7 @@ benchtest()
 #上传文件
 updatefile()
 {
-	resultstr=$(curl -s -T $logfilename "http://test.91yun.org/logfileupload.php")
+	resultstr=$(curl -s -T $logfilename "https://test.91yun.org/logfileupload.php")
 	echo -e $resultstr | tee -a $logfilename
 }
 
