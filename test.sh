@@ -38,13 +38,14 @@ echo "开始测试中，会需要点时间，请稍后"
 
 
 _included_benchmarks=""
-
+upfile="y"
 
 
 #取参数
-while getopts "i:" opt; do
+while getopts "i:u" opt; do
     case $opt in
         i) _included_benchmarks=$OPTARG;;
+		u) upfile="n";;
     esac
 done
 
@@ -72,7 +73,7 @@ fi
 
 #要用到的变量
 backtime=`date +%Y%m%d`
-logfilename="test91yun.log"
+logfilename="91yuntest.log"
 dir=`pwd`
 IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
 echo "====开始记录测试信息====">${dir}/$logfilename
@@ -98,11 +99,16 @@ done
 #上传文件
 updatefile()
 {
-	resultstr=$(curl -s -T ${dir}/$logfilename "https://test.91yun.org/logfileupload.php")
+	resultstr=$(curl -s -T ${dir}/$logfilename "http://logfileupload.91yuntest.com/logfileupload.php")
 	echo -e $resultstr | tee -a ${dir}/$logfilename
 }
-updatefile
 
+if [[ $upfile == "y" ]]
+then
+	updatefile
+else
+	echo "测试结束，具体日志查看 91yuntest.log"
+fi
 #删除目录
 rm -rf ${dir}/91yuntest
 
