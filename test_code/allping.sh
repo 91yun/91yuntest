@@ -4,8 +4,8 @@ ping_test(){
 	pingstr=$(curl -s "$pingurl")
 	#echo $pingstr >> ${dir}/$logfilename
 	echo $pingstr > pingstr.log
-	pingstrback_all=$(curl -s -d @pingstr.log "https://www.91yuntest.com/ping.php?ping")
-	pingstrback=$(curl -s -d @pingstr.log "https://www.91yuntest.com/ping.php")
+	pingstrback_all=$(curl -s -d @pingstr.log "http://logfileupload.91yuntest.com/ping.php?ping")
+	pingstrback=$(curl -s -d @pingstr.log "http://logfileupload.91yuntest.com/ping.php")
 	rm -rf pingstr.log
 
 

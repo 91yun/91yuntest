@@ -12,7 +12,7 @@ mtrgo(){
 	nodename=$2
 	mtrgostr=$(curl -s "$mtrurl")
 	echo $mtrgostr > mtrlog.log
-	mtrgostrback=$(curl -s -d @mtrlog.log "https://www.91yuntest.com/traceroute.php")
+	mtrgostrback=$(curl -s -d @mtrlog.log "https://logfileupload.91yuntest.com/traceroute.php")
 	rm -rf mtrlog.log
 	
 	#显示在显示器上
