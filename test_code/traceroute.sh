@@ -10,7 +10,7 @@ mtrgo(){
 	#获得数据
 	mtrurl=$1
 	nodename=$2
-	mtrgostr=$(curl -s "$mtrurl")
+	mtrgostr=$(curl -s -L "$mtrurl")
 	echo $mtrgostr > mtrlog.log
 	mtrgostrback=$(curl -s -d @mtrlog.log "https://logfileupload.91yuntest.com/traceroute.php")
 	rm -rf mtrlog.log
