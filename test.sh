@@ -90,7 +90,7 @@ arr=(${_included_benchmarks//,/ })
 #下载执行相应的代码
 for i in ${arr[@]}    
 do 
-	wget -q --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/test/test_code/${i}.sh
+	wget -q --no-check-certificate https://raw.githubusercontent.com/91yun/91yuntest/master/test_code/${i}.sh
     . ${dir}/91yuntest/${i}.sh
 	eval ${i}
 done    
