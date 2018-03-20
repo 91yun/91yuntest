@@ -25,8 +25,8 @@ def mtrgo(mtrurl,nodename):
 	result=re.finditer(r"<script>parent\.resp_once\('(\d+)', (\[[^\]]*\])\)</script>",content)
 	f=""
 	print("===测试 ["+nodename+"] 到这台服务器的路由===")
+	f="===start test traceroute from ["+nodename+"]===\n"
 	for r in result:
-		f="===start test traceroute from ["+nodename+"]==="
 		js=json.loads(r.group(2))
 		f=f+"%s#%s#%s#%s#%s"%(r.group(1),js[0]["ip"],js[0]["host"],js[0]["area"],js[0]["time"])+"\n"
 		print("%-5s%-20s%-30s%-45s"%(r.group(1),js[0]["host"],js[0]["area"],js[0]["time"]))
@@ -39,7 +39,7 @@ def mtrgo(mtrurl,nodename):
 
 
 mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=100&ip="+ip,"上海电信（天翼云）")
-mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=314&ip="+ip,"镇江联通")
+mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=3&ip="+ip,"杭州联通")
 mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=305&ip="+ip,"四川德阳移动")
 
 
