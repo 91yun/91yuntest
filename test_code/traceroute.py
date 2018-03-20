@@ -18,6 +18,13 @@ for op, value in opts:
 	elif op == "-i":
 		ip=value
 
+def getip(iphtml):
+	searchip=re.search("<a [^>]*>([^<]*)</a>",iphtml)
+	if searchip:
+		return searchip.group(1)
+	else:
+		return iphtml
+
 
 def mtrgo(mtrurl,nodename):
 	text=requests.get(mtrurl,verify=False)
@@ -28,7 +35,7 @@ def mtrgo(mtrurl,nodename):
 	f="===start test traceroute from ["+nodename+"]===\n"
 	for r in result:
 		js=json.loads(r.group(2))
-		f=f+"%s#%s#%s#%s#%s"%(r.group(1),js[0]["ip"],js[0]["host"],js[0]["area"],js[0]["time"])+"\n"
+		f=f+"%s#%s#%s#%s#%s"%(r.group(1),getip(js[0]["ip"]),js[0]["host"],js[0]["area"],js[0]["time"])+"\n"
 		print("%-5s%-20s%-30s%-45s"%(r.group(1),js[0]["host"],js[0]["area"],js[0]["time"]))
 		print("\n")
 
