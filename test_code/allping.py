@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+import re
+import json
+import sys, getopt
+if sys.getdefaultencoding() != 'utf-8':
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+
+opts, args = getopt.getopt(sys.argv[1:], "l:i:")
+logfilename="91yuntest.log"
+ip=''
+for op, value in opts:
+	if op == "-l":
+		logfilename=value
+	elif op == "-i":
+		ip=value
+
+def getip(iphtml):
+	searchip=re.search("<a [^>]*>([^<]*)</a>",iphtml)
+	if searchip:
+		return searchip.group(1)
+	else:
+		return iphtml
+
+
+
+def allping(gethmtl):
+	f="===all ping start==="
+	f=f+"%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s"%("id","ping的地点","IP","IP所在地","丢包率","MIX","MAX","延迟","TTL")+"\n"
+	result=re.finditer(r"<script>parent\.call_ping\(([^<]*)\);<\/script>",gethmtl)
+	for r in result:
+		js=json.loads(r.group(1))
+		f=f+"%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s"%(js["id"],js["name"],js["ip"],js["ip_area"],js["loss"],js["rtt_min"],js["rtt_max"],js["rtt_avg"],js["ttl"])+"\n"
+
+	f=f+"===all ping end===\n\n"
+	return f
+
+def showping(gethmtl):
+	
+
+
+
+def mtrgo(mtrurl,nodename):
+	text=requests.get(mtrurl,verify=False)
+	content=text.text
+	result=re.finditer(r"<script>parent\.resp_once\('(\d+)', (\[[^\]]*\])\)</script>",content)
+	f=""
+	print("===测试 ["+nodename+"] 到这台服务器的路由===")
+	f="===start test traceroute from ["+nodename+"]===\n"
+	for r in result:
+		js=json.loads(r.group(2))
+		f=f+"%s#%s#%s#%s#%s"%(r.group(1),getip(js[0]["ip"]),js[0]["host"],js[0]["area"],js[0]["time"])+"\n"
+		print("%-5s%-20s%-30s%-45s"%(r.group(1),js[0]["host"],js[0]["area"],js[0]["time"]))
+		print("\n")
+
+	f=f+"=== ["+nodename+"] traceroute test ended===\n\n"
+	with open(logfilename,"a+") as file:
+		file.write(f)
+
+
+
+
+
+text=requests.get(mtrurl,verify=False)
+content=text.text
+allping(content)
+
+

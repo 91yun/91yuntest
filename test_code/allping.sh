@@ -1,6 +1,6 @@
 ping_test(){
 	
-	pingurl="http://www.ipip.net/ping.php?a=send&host=$1&area%5B%5D=china"
+	pingurl="http://www.ipip.net/ping.php?a=send&host=$1&area=china"
 	pingstr=$(curl -s "$pingurl")
 	#echo $pingstr >> ${dir}/$logfilename
 	echo $pingstr > pingstr.log
