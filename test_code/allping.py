@@ -27,45 +27,44 @@ def getip(iphtml):
 
 
 
-def allping(gethmtl):
-	f="===all ping start==="
-	f=f+"%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s"%("id","ping的地点","IP","IP所在地","丢包率","MIX","MAX","延迟","TTL")+"\n"
-	result=re.finditer(r"<script>parent\.call_ping\(([^<]*)\);<\/script>",gethmtl)
+def allping(gethtml):
+	f="===all ping start===\n"
+	f=f+"%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"%("id","ping的地点","IP","IP所在地","丢包率","MIX","MAX","延迟","TTL")+"\n"
+	result=re.finditer(r"<script>parent\.call_ping\(([^<]*)\);<\/script>",gethtml)
 	for r in result:
 		js=json.loads(r.group(1))
-		f=f+"%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s/t%s"%(js["id"],js["name"],js["ip"],js["ip_area"],js["loss"],js["rtt_min"],js["rtt_max"],js["rtt_avg"],js["ttl"])+"\n"
+		f=f+"%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"%(js["id"],js["name"],js["ip"],js["ip_area"],js["loss"],js["rtt_min"],js["rtt_max"],js["rtt_avg"],js["ttl"])+"\n"
 
 	f=f+"===all ping end===\n\n"
 	return f
 
-def showping(gethmtl):
-	
-
-
-
-def mtrgo(mtrurl,nodename):
-	text=requests.get(mtrurl,verify=False)
-	content=text.text
-	result=re.finditer(r"<script>parent\.resp_once\('(\d+)', (\[[^\]]*\])\)</script>",content)
-	f=""
-	print("===测试 ["+nodename+"] 到这台服务器的路由===")
-	f="===start test traceroute from ["+nodename+"]===\n"
+def showping(gethtml):
+	f="===ping show===\n"
+	f=f+"%s\t%s\t%s\t%s\t%s\t%s\t%s\n"%("线路","节点数目","最快节点","延迟","最慢节点","延迟","平均延迟")+"\n"
+	print("%-10s%-24s\t%-10s%-24s\t%-10s%-10s\n"%("线路","最快节点","延迟","最慢节点","延迟","平均延迟"))
+	result=re.finditer(r"<script>parent\.summary_ping\(([^<]*)\)<\/script>",gethtml)
 	for r in result:
-		js=json.loads(r.group(2))
-		f=f+"%s#%s#%s#%s#%s"%(r.group(1),getip(js[0]["ip"]),js[0]["host"],js[0]["area"],js[0]["time"])+"\n"
-		print("%-5s%-20s%-30s%-45s"%(r.group(1),js[0]["host"],js[0]["area"],js[0]["time"]))
-		print("\n")
-
-	f=f+"=== ["+nodename+"] traceroute test ended===\n\n"
-	with open(logfilename,"a+") as file:
-		file.write(f)
-
+		js=json.loads(r.group(1))
+		for key in js:
+			f=f+"%s\t%s\t%s\t%sms\t%s\t%sms\t%sms"%(key,js[key]["count"],js[key]["min_name"],js[key]["min_speed"],js[key]["max_name"],js[key]["max_speed"],js[key]["avg"])+"\n"
+			print("%-10s%-24s\t%-10s%-24s\t%-10s%-10s\n"%(key.encode('utf-8'),js[key]["min_name"].encode('utf-8'),js[key]["min_speed"].encode('utf-8'),js[key]["max_name"].encode('utf-8'),js[key]["max_speed"].encode('utf-8'),js[key]["avg"].encode('utf-8')))
+			
+	f=f+"===ping show end===\n\n"
+	return f
 
 
 
 
-text=requests.get(mtrurl,verify=False)
+
+
+text=requests.get("http://www.ipip.net/ping.php?a=send&host="+ip+"&area=china",verify=False)
 content=text.text
-allping(content)
+c="===开始进行全国PING测试===\n"
+c=c+allping(content)
+c=c+showping(content)
+c=c+"===进行全国PING测试结束===\n"
+with open(logfilename,"a+") as file:
+	file.write(c)
+
 
 
