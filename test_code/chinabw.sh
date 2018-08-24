@@ -15,13 +15,11 @@ chinabw()
         printf "%-18s%-18s%-20s%-12s\n" "$2" "$upload" "$download" "$latency"
     fi
 
-
 	#写入日志文件
-	echo "===开始测试国内带宽===">>${dir}/$logfilename
 	echo "$2|$upload|$download|$latency">>${dir}/$logfilename
-	echo -e "===国内带宽测试结束==\n\n">>${dir}/$logfilename
 }
 next
+echo "===开始测试国内带宽===">>${dir}/$logfilename
 printf "%-18s%-18s%-20s%-12s\n" " Node Name" "Upload Speed" "Download Speed" "Latency"
 chinabw '3633' '上海 电信'
 chinabw '4741' '北京 电信'
@@ -34,4 +32,5 @@ chinabw '4665' '上海 移动'
 chinabw '4575' '成都 移动'
 chinabw '6168' '昆明 移动'
 chinabw '6611' '广东 移动'
+echo -e "===国内带宽测试结束==\n\n">>${dir}/$logfilename
 
