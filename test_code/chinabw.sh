@@ -13,10 +13,11 @@ cbw()
     if [ -n "$latency" ]
     then
         printf "%-18s%-18s%-20s%-12s\n" "$2" "$upload" "$download" "$latency"
+        #写入日志文件
+	    echo "$2|$upload|$download|$latency">>${dir}/$logfilename
     fi
 
-	#写入日志文件
-	echo "$2|$upload|$download|$latency">>${dir}/$logfilename
+
 }
 chinabw()
 {
