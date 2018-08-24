@@ -5,6 +5,10 @@ import requests
 import re
 import json
 import sys, getopt
+from requests.packages.urllib3.exceptions import InsecureRequestWarning 
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+
 if sys.getdefaultencoding() != 'utf-8':
     reload(sys)
     sys.setdefaultencoding('utf-8')
@@ -27,7 +31,11 @@ def getip(iphtml):
 
 
 def mtrgo(mtrurl,nodename):
-	text=requests.get(mtrurl,verify=False)
+	send_headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+              "Connection":"keep-alive",
+              "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+              "Accept-Language":"zh-CN,zh;q=0.8"}
+	text=requests.get(mtrurl,verify=False,headers=send_headers)
 	content=text.text
 	result=re.finditer(r"<script>parent\.resp_once\('(\d+)', (\[[^\]]*\])\)</script>",content)
 	f=""
