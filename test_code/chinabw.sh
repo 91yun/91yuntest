@@ -17,9 +17,9 @@ chinabw()
 
 
 	#写入日志文件
-	echo "===开始测试带宽===">>${dir}/$logfilename
+	echo "===开始测试国内带宽===">>${dir}/$logfilename
 	echo "$2|$upload|$download|$latency">>${dir}/$logfilename
-	echo -e "===带宽测试结束==\n\n">>${dir}/$logfilename
+	echo -e "===国内带宽测试结束==\n\n">>${dir}/$logfilename
 }
 next
 printf "%-18s%-18s%-20s%-12s\n" " Node Name" "Upload Speed" "Download Speed" "Latency"
