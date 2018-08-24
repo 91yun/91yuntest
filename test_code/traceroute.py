@@ -45,8 +45,8 @@ def mtrgo(mtrurl,nodename):
 
 
 
-mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=100&ip="+ip,"上海电信（天翼云）")
-mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=3&ip="+ip,"杭州联通")
-mtrgo("https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=305&ip="+ip,"四川德阳移动")
+mtrgo("https://www.ipip.net/traceroute.php?as=1&v=4&a=get&n=1&id=100&ip="+ip,"上海电信（天翼云）")
+mtrgo("https://www.ipip.net/traceroute.php?as=1&v=4&a=get&n=1&id=3&ip="+ip,"杭州联通")
+mtrgo("https://www.ipip.net/traceroute.php?as=1&v=4&a=get&n=1&id=305&ip="+ip,"四川德阳移动")
 
 

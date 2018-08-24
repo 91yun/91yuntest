@@ -57,7 +57,7 @@ def showping(gethtml):
 
 
 
-text=requests.get("http://www.ipip.net/ping.php?a=send&host="+ip+"&area=china",verify=False)
+text=requests.get("https://www.ipip.net/ping.php?v=4&a=send&host="+ip+"&area=china",verify=False)
 content=text.text
 c="===开始进行全国PING测试===\n"
 c=c+allping(content)
