@@ -5,6 +5,7 @@ import requests
 import re
 import json
 import sys, getopt
+import os
 from requests.packages.urllib3.exceptions import InsecureRequestWarning 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 if sys.getdefaultencoding() != 'utf-8':
@@ -62,8 +63,13 @@ send_headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKi
 			"Connection":"keep-alive",
 			"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
 			"Accept-Language":"zh-CN,zh;q=0.8"}
-text=requests.get("https://www.ipip.net/ping.php?v=4&a=send&host="+ip+"&area=china",verify=False,headers=send_headers)
+text=requests.get("https://tools.ipip.net/ping.php?v=4&a=send&host="+ip+"&area=china",verify=False,headers=send_headers)
 content=text.text
+# comstr="curl \"https://tools.ipip.net/ping.php?v=4&a=send&host="+ip+"&area=china\""
+# print(comstr)
+# content=os.popen(comstr).read()
+with open(logfilename,"a+") as file:
+	file.write(content)
 c="===开始进行全国PING测试===\n"
 c=c+allping(content)
 c=c+showping(content)
