@@ -68,8 +68,6 @@ content=text.text
 # comstr="curl \"https://tools.ipip.net/ping.php?v=4&a=send&host="+ip+"&area=china\""
 # print(comstr)
 # content=os.popen(comstr).read()
-with open(logfilename,"a+") as file:
-	file.write(content)
 c="===开始进行全国PING测试===\n"
 c=c+allping(content)
 c=c+showping(content)
