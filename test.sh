@@ -61,16 +61,15 @@ bt="benchtest"
 if [[ $_included_benchmarks == *$bt* ]]
 then
     apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python python-pip perl automake autoconf time make gcc gdb )
+	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python perl automake autoconf time make gcc gdb )
 	yum >/dev/null 2>&1
-	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python python-pip make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes perl
+	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes perl
 else
     apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python python-pip )
+	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python )
 	yum >/dev/null 2>&1
-	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python python-pip
+	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python
 fi
-pip install requests
 
 #要用到的变量
 backtime=`date +%Y%m%d`
