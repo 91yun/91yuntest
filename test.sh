@@ -71,6 +71,14 @@ else
 	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python
 fi
 
+#做版本处理
+Centosver=`cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/'`
+Ubuntuver=`cat /etc/issue | awk '{print $2}' | awk -F "." '{print $1}'`
+if [ "$Centosver" == "8" ]; then
+	sudo alternatives --set python /usr/bin/python3
+fi
+
+
 #要用到的变量
 backtime=`date +%Y%m%d`
 logfilename="91yuntest.log"
