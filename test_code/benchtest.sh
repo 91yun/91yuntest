@@ -3,7 +3,7 @@ benchtest()
 	next
 	
 	# Download UnixBench5.1.3
-	if ! wget -qc http://lamp.teddysun.com/files/UnixBench5.1.3.tgz; then
+	if ! wget -qc http://dl.lamp.sh/files/UnixBench5.1.3.tgz; then
 		echo "Failed to download UnixBench5.1.3.tgz, please download it to ${cur_dir} directory manually and try again."
 		exit 1
 	fi
