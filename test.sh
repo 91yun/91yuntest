@@ -2,31 +2,6 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 export PATH
 
-Color_Text()
-{
-  echo -e " \e[0;$2m$1\e[0m"
-}
-
-Echo_Red()
-{
-  echo $(Color_Text "$1" "31")
-}
-
-Echo_Green()
-{
-  echo $(Color_Text "$1" "32")
-}
-
-Echo_Yellow()
-{
-  echo -n $(Color_Text "$1" "33")
-}
-
-Echo_Blue()
-{
-  echo $(Color_Text "$1" "34")
-}
-
 next() {
     printf "%-70s\n" "-" | sed 's/\s/-/g'
 }
@@ -55,28 +30,6 @@ if [ "$_included_benchmarks" == "" ]; then
 fi
 
 _included_benchmarks="systeminfo,"${_included_benchmarks}
-
-#预先安装库，如果有进行benchtest就会多安装些东西
-bt="benchtest"
-if [[ $_included_benchmarks == *$bt* ]]
-then
-    apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python perl automake autoconf time make gcc gdb )
-	yum >/dev/null 2>&1
-	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python make gcc gcc-c++ gdbautomake autoconf time perl-Time-HiRes perl
-else
-    apt-get >/dev/null 2>&1
-	[ $? -le '1' ] && ( apt-get update | apt-get -y install curl mtr-tiny virt-what python )
-	yum >/dev/null 2>&1
-	[ $? -le '1' ] && yum -y install which epel-release sed curl mtr virt-what python
-fi
-
-#做版本处理
-Centosver=`cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/'`
-Ubuntuver=`cat /etc/issue | awk '{print $2}' | awk -F "." '{print $1}'`
-if [ "$Centosver" == "8" ]; then
-	sudo alternatives --set python /usr/bin/python3
-fi
 
 
 #要用到的变量

@@ -1,3 +1,10 @@
+bechinstall()
+{
+    apt-get >/dev/null 2>&1
+	[ $? -le '1' ] && ( apt-get update >/dev/null 2>&1 | apt-get -y make automake gcc autoconf time perl >/dev/null 2>&1 )
+	yum >/dev/null 2>&1
+	[ $? -le '1' ] && yum -y install make automake gcc autoconf gcc-c++ time perl-Time-HiRes >/dev/null 2>&1
+}
 benchtest()
 {	
 	next
