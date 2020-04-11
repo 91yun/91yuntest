@@ -5,7 +5,7 @@ cbw()
     wget --no-check-certificate https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-${arch}-linux.tgz -O speedtest.tgz 1>/dev/null 2>&1
     tar xfvz speedtest.tgz >/dev/null 2>&1
     chmod +x speedtest
-    bd=`echo yes | ./speedtest -s $1 2>/dev/null | awk -F '(' '{print $1}'`
+    bd=`./speedtest --accept-license -s $1 2>/dev/null | awk -F '(' '{print $1}'`
 
 	#获得相关数据
     latency=`echo "$bd" | awk -F ':' '/Latency/{print $2}'`
