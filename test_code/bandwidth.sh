@@ -18,10 +18,3 @@ bandwidth()
 	echo "$bd">>${dir}/$logfilename
 	echo -e "===带宽测试结束==\n\n">>${dir}/$logfilename
 }
-
-next() {
-    printf "%-70s\n" "-" | sed 's/\s/-/g'
-}
-dir=91yuntest
-logfilename=91yuntest.log
-bandwidth
