@@ -8,7 +8,7 @@ bechinstall()
 benchtest()
 {	
 	next
-	
+	bechinstall
 	# Download UnixBench5.1.3
 	if ! wget -qc http://dl.lamp.sh/files/UnixBench5.1.3.tgz; then
 		echo "Failed to download UnixBench5.1.3.tgz, please download it to ${cur_dir} directory manually and try again."
