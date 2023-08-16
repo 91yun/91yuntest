@@ -11,10 +11,4 @@ bandwidth()
 	next
     echo "$bd" | grep -v Ookla | grep -v '^$'
 
-
-
-	#写入日志文件
-	echo "===开始测试带宽==="
-	echo "$bd"
-	echo -e "===带宽测试结束==\n\n"
 }

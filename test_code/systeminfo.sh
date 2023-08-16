@@ -17,7 +17,6 @@ systeminfo()
 	opsy=$( get_opsy )
 	arch=$( uname -m )
 	lbit=$( getconf LONG_BIT )
-	host=$hostp
 	up=$( awk '{a=$1/86400;b=($1%86400)/3600;c=($1%3600)/60;d=$1%60} {printf("%ddays, %d:%d:%d\n",a,b,c,d)}' /proc/uptime )
 	kern=$( uname -r )
 	IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
@@ -29,8 +28,6 @@ systeminfo()
 	# vm=`virt-what`
 
 	#显示在屏幕上
-    echo "Provider: $hostp"
-	next
 	echo "CPU model            : $cname"
 	echo "Number of cores      : $cores"
 	echo "CPU frequency        : $freq MHz"
@@ -40,23 +37,4 @@ systeminfo()
 	# echo "Virtualization       : $vm"
 	echo "IPaddr               : $IPaddr"
     echo "OS                   : $opsy $arch $kern"
-
-	#写入日志文件
-	echo "===系统基本信息==="
-	echo "CPU:$cname"
-	echo "cores:$cores"
-	echo "freq:$freq"
-	echo "ram:$tram"
-	echo "swap:$swap"
-	echo "uptime:$up"
-	echo "OS:$opsy"
-	echo "Arch:$arch ($lbit Bit)"
-	echo "Kernel:$kern"
-	echo "ip:$IP"
-	echo "ipaddr:$IPaddr"
-	echo "host:$hostp"
-	echo "uptime:$up"
-	# echo "vm:$vm"
-	echo "he:$he"
-	echo -e "\n\n"
 }

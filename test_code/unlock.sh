@@ -2947,88 +2947,7 @@ function CheckV6() {
 	fi	
 }
 
-function Goodbye(){
-
-	if [[ "$language" == "e" ]];then
-		echo -e "${Font_Green}Testing Done! Thanks for Using This Script! ${Font_Suffix}";
-		echo -e ""
-		echo -e "${Font_Yellow}Number of Script Runs for Today：${TodayRunTimes}; Total Number of Script Runs: ${TotalRunTimes} ${Font_Suffix}"
-		echo -e ""
-		echo -e "========================================================="
-		echo -e "${Font_Red}If you found this script helpful, you can but me a coffee${Font_Suffix}"
-		echo -e ""
-		echo -e "LTC：LQD4S6Y5bu3bHX6hx8ASsGHVfaqFGFNTbx"
-		echo -e "========================================================="
-	else	
-		echo -e "${Font_Green}本次测试已结束，感谢使用此脚本 ${Font_Suffix}";
-		echo -e ""
-		echo -e "${Font_Yellow}检测脚本当天运行次数：${TodayRunTimes}; 共计运行次数：${TotalRunTimes} ${Font_Suffix}"
-		echo -e ""
-		echo -e "${Font_SkyBlue}【荐鸡时刻】${Font_Suffix}"
-		echo -e "================================================"
-		echo -e "${Font_Yellow}DMIT TYO Lite系列 三网回程cmi 端口带宽1Gbps以及上${Font_Suffix}"
-		echo -e "${Font_Red}传送门：${Font_Suffix}https://www.dmit.io/aff.php?aff=3198"
-		echo -e "================================================"
-	fi	
-}
-
-clear;
-
-function ScriptTitle(){
-	if [[ "$language" == "e" ]];then
-		echo -e "【Stream Platform & Game Region Restriction Test】";
-		echo ""
-		echo -e "${Font_Green}Github Repository:${Font_Suffix} ${Font_Yellow} https://github.com/lmc999/RegionRestrictionCheck ${Font_Suffix}";
-		echo -e "${Font_Green}Telegram Discussion Group:${Font_Suffix} ${Font_Yellow} https://t.me/gameaccelerate ${Font_Suffix}";
-		echo -e "${Font_Purple}Supporting OS: CentOS 6+, Ubuntu 14.04+, Debian 8+, MacOS, Android (Termux), iOS (iSH)${Font_Suffix}"
-		echo ""
-		echo -e " ** Test Starts At: $(date)";
-		echo ""
-	else
-		echo -e "【流媒体平台及游戏区域限制测试】";
-		echo ""
-		echo -e "${Font_Green}项目地址${Font_Suffix} ${Font_Yellow}https://github.com/lmc999/RegionRestrictionCheck ${Font_Suffix}";
-		echo -e "${Font_Green}BUG反馈或使用交流可加TG群组${Font_Suffix} ${Font_Yellow}https://t.me/gameaccelerate ${Font_Suffix}";
-		echo -e "${Font_Purple}脚本适配OS: CentOS 6+, Ubuntu 14.04+, Debian 8+, MacOS, Android (Termux), iOS (iSH)${Font_Suffix}"
-		echo ""
-		echo -e " ** 测试时间: $(date)";
-		echo ""
-	fi
-}
-ScriptTitle
-
-function Start(){
-	if [[ "$language" == "e" ]];then
-		echo -e "${Font_Blue}Please Select Test Region or Press ENTER to Test All Regions${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【1】：【 Multination + Taiwan 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【2】：【 Multination + Hong Kong 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【3】：【 Multination + Japan 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【4】：【 Multination + North America 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【5】：【 Multination + South America 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【6】：【 Multination + Europe 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【7】：【 Multination + Oceania 】${Font_Suffix}"
-		echo -e "${Font_SkyBlue}Input Number【0】：【 Multination Only 】${Font_Suffix}" 
-		echo -e "${Font_SkyBlue}Input Number【99】：【 Sport Platforms 】${Font_Suffix}"
-		read -p "Please Input the Correct Number or Press ENTER:" num
-	else
-		echo -e "${Font_Blue}请选择检测项目，直接按回车将进行全区域检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【1】：【 跨国平台+台湾平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【2】：【 跨国平台+香港平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【3】：【 跨国平台+日本平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【4】：【 跨国平台+北美平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【5】：【 跨国平台+南美平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【6】：【 跨国平台+欧洲平台 】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【7】：【跨国平台+大洋洲平台】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【0】：【   只进行跨国平台  】检测${Font_Suffix}"
-		echo -e "${Font_SkyBlue}输入数字【99】 【   体育直播平台    】检测${Font_Suffix}"
-		read -p "请输入正确数字或直接按回车:" num
-	fi	
-}
-Start
-
-function RunScript(){
-	clear
-	ScriptTitle
+unlock(){
 	CheckV4
 	if [[ "$isv4" -eq 1 ]];then
 		Global_UnlockTest 4
@@ -3037,7 +2956,4 @@ function RunScript(){
 	if 	[[ "$isv6" -eq 1 ]];then
 		Global_UnlockTest 6
 	fi	
-	Goodbye
 }
-
-RunScript

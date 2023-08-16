@@ -7,8 +7,6 @@ next() {
 }
 
 
-echo "服务器提供商（host provider）[default:Enter]"
-read hostp
 echo "开始测试中，会需要点时间，请稍后"
 
 
@@ -37,7 +35,7 @@ backtime=`date +%Y%m%d`
 logfilename="91yuntest.log"
 dir=`pwd`
 IP=$(curl -s myip.ipip.net | awk -F ' ' '{print $2}' | awk -F '：' '{print $2}')
-echo "====开始记录测试信息====">${dir}/$logfilename
+echo "====开始记录测试信息===="
 
 #创建测试目录
 mkdir -p 91yuntest
