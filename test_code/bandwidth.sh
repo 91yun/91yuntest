@@ -1,7 +1,7 @@
 bandwidth()
 {
     arch=$( uname -m )
-    wget --no-check-certificate https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-${arch}-linux.tgz -O speedtest.tgz 1>/dev/null 2>&1
+    wget --no-check-certificate https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz -O speedtest.tgz 1>/dev/null 2>&1
     tar xfvz speedtest.tgz >/dev/null 2>&1
     chmod +x speedtest
     bd=`./speedtest --accept-license --accept-gdpr | awk -F '(' '{print $1}'`
