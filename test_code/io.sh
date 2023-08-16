@@ -20,16 +20,10 @@ io()
 	ioavg=$( awk 'BEGIN{print '$ioall'/3}' )
 
 	#显示在屏幕上
+	echo "===开始测试IO性能==="
 	next
 	echo "I/O speed(1st run)   : $io1"
 	echo "I/O speed(2nd run)   : $io2"
 	echo "I/O speed(3rd run)   : $io3"
 	echo "Average I/O speed    : $ioavg MB/s"
-
-	#写入日志文件
-	echo "===开始测试IO性能==="
-	echo "I/O speed(1st run) : $io1"
-	echo "I/O speed(2nd run) : $io2"
-	echo "I/O speed(3rd run) : $io3"
-	echo "Average I/O: $ioavg MB/s"
 }

@@ -28,6 +28,8 @@ systeminfo()
 	# vm=`virt-what`
 
 	#显示在屏幕上
+	echo "===系统信息==="
+	next
 	echo "CPU model            : $cname"
 	echo "Number of cores      : $cores"
 	echo "CPU frequency        : $freq MHz"
@@ -37,4 +39,5 @@ systeminfo()
 	# echo "Virtualization       : $vm"
 	echo "IPaddr               : $IPaddr"
     echo "OS                   : $opsy $arch $kern"
+	next
 }
