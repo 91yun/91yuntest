@@ -37,7 +37,7 @@ ipiptraceroute()
     t=`echo "$t" | sed -r "s/<script>parent.resp_once\((.*)\)<\/script>/\1/g"`
 
     echo "===测试 [$2] 到这台服务器的路由==="
-    echo  "===start test traceroute from [$2]===" >>${dir}/$logfilename
+    echo  "===start test traceroute from [$2]===" 
     while read line || [ -n "$line" ]
     do
         num=`echo "$line" | grep -oE "^'[0-9]+'" | grep -oE "[0-9]+"`
@@ -68,11 +68,11 @@ ipiptraceroute()
         fi   
 
         printf "%-5s\t%-20s\t%-60s\t%-10s\n" "$num" "$host" "$area" "$time"
-        echo "$num#$ip#$host#$area#$time" >>${dir}/$logfilename
+        echo "$num#$ip#$host#$area#$time" 
 
     done < <(echo "$t")
-    echo "=== [$2] traceroute test ended===" >>${dir}/$logfilename
+    echo "=== [$2] traceroute test ended===" 
     echo ""
-    echo "" >>${dir}/$logfilename
+    echo "" 
 }
 

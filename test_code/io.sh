@@ -27,9 +27,9 @@ io()
 	echo "Average I/O speed    : $ioavg MB/s"
 
 	#写入日志文件
-	echo "===开始测试IO性能===">>${dir}/$logfilename
-	echo "I/O speed(1st run) : $io1">>${dir}/$logfilename
-	echo "I/O speed(2nd run) : $io2">>${dir}/$logfilename
-	echo "I/O speed(3rd run) : $io3">>${dir}/$logfilename
-	echo "Average I/O: $ioavg MB/s">>${dir}/$logfilename
+	echo "===开始测试IO性能==="
+	echo "I/O speed(1st run) : $io1"
+	echo "I/O speed(2nd run) : $io2"
+	echo "I/O speed(3rd run) : $io3"
+	echo "Average I/O: $ioavg MB/s"
 }

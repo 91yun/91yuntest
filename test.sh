@@ -26,7 +26,7 @@ done
 
 #默认参数
 if [ "$_included_benchmarks" == "" ]; then
-	_included_benchmarks="io,bandwidth,download,traceroute,backtraceroute,allping"
+	_included_benchmarks="io,bandwidth,download,backtraceroute,unlock"
 fi
 
 _included_benchmarks="systeminfo,"${_included_benchmarks}
@@ -56,20 +56,6 @@ do
 	eval ${i}
 done    
 
-
-#上传文件
-updatefile()
-{
-	resultstr=$(curl -s -T ${dir}/$logfilename "http://logfileupload.91yuntest.com/logfileupload.php")
-	echo -e $resultstr | tee -a ${dir}/$logfilename
-}
-
-if [[ $upfile == "y" ]]
-then
-	updatefile
-else
-	echo "测试结束，具体日志查看 91yuntest.log"
-fi
 #删除目录
 rm -rf ${dir}/91yuntest
 

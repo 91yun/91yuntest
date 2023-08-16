@@ -19,11 +19,11 @@ benchtest()
 
 	#Run unixbench
 	make > /dev/null 2>&1
-	echo "===开始测试bench===" >> ${dir}/${logfilename}
+	echo "===开始测试bench==="
 	./Run
 	benchfile=`ls results/ | grep -v '\.'`
-	cat results/${benchfile} >> ${dir}/${logfilename}
-	echo "===bench测试结束===" >> ${dir}/${logfilename}	
+	cat results/${benchfile}
+	echo "===bench测试结束==="
 	cd ..
 	rm -rf UnixBench5.1.3.tgz UnixBench
 }

@@ -42,21 +42,21 @@ systeminfo()
     echo "OS                   : $opsy $arch $kern"
 
 	#写入日志文件
-	echo "===系统基本信息===">>${dir}/$logfilename
-	echo "CPU:$cname">>${dir}/$logfilename
-	echo "cores:$cores">>${dir}/$logfilename
-	echo "freq:$freq">>${dir}/$logfilename
-	echo "ram:$tram">>${dir}/$logfilename
-	echo "swap:$swap">>${dir}/$logfilename
-	echo "uptime:$up">>${dir}/$logfilename
-	echo "OS:$opsy">>${dir}/$logfilename
-	echo "Arch:$arch ($lbit Bit)">>${dir}/$logfilename
-	echo "Kernel:$kern">>${dir}/$logfilename
-	echo "ip:$IP">>${dir}/$logfilename
-	echo "ipaddr:$IPaddr">>${dir}/$logfilename
-	echo "host:$hostp">>${dir}/$logfilename
-	echo "uptime:$up">>${dir}/$logfilename
-	# echo "vm:$vm">>${dir}/$logfilename
-	echo "he:$he">>${dir}/$logfilename
-	echo -e "\n\n">>${dir}/$logfilename
+	echo "===系统基本信息==="
+	echo "CPU:$cname"
+	echo "cores:$cores"
+	echo "freq:$freq"
+	echo "ram:$tram"
+	echo "swap:$swap"
+	echo "uptime:$up"
+	echo "OS:$opsy"
+	echo "Arch:$arch ($lbit Bit)"
+	echo "Kernel:$kern"
+	echo "ip:$IP"
+	echo "ipaddr:$IPaddr"
+	echo "host:$hostp"
+	echo "uptime:$up"
+	# echo "vm:$vm"
+	echo "he:$he"
+	echo -e "\n\n"
 }

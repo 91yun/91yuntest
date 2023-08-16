@@ -17,7 +17,7 @@ cbw()
     then
         printf "%-18s%-18s%-20s%-12s\n" "$2" "$upload" "$download" "$latency"
         #写入日志文件
-	    echo "$2|$upload|$download|$latency">>${dir}/$logfilename
+	    echo "$2|$upload|$download|$latency"
     fi
 
 

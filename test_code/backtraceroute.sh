@@ -7,10 +7,10 @@ mtrinstall()
 }
 mtrback(){
     type mtr >/dev/null 2>&1 || mtrinstall 
-	echo "===测试 [$2] 的回程路由===" | tee -a ${dir}/$logfilename
-	mtr -r --tcp -w -b -c 10 $1 | tee -a ${dir}/$logfilename
+	echo "===测试 [$2] 的回程路由===" 
+	mtr -r --tcp -w -b -c 10 $1 
 	echo -e "\n\n"
-	echo -e "===回程 [$2] 路由测试结束===\n\n" >> ${dir}/$logfilename
+	echo -e "===回程 [$2] 路由测试结束===\n\n" 
 
 }
 

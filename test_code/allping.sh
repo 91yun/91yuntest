@@ -17,12 +17,12 @@ allping()
 
 ipipallpingsum()
 {
-    echo "===ping show===" >>${dir}/$logfilename
+    echo "===ping show===" 
     t=`cat allping.log`
     t=`echo -e "$t" | grep -oE "<script>parent\.summary_ping\([^<]*\)<\/script>" | sed -r 's@<script>parent.summary_ping\(([^<]*)\)<\/script>@\1@g'`
     t=`echo "$t" | grep -oE '"[^"]*":{"count":[^,]*,"total":"[^,]*","min_speed":"[^,]*","min_name":"[^,]*","max_speed":"[^,]*","max_name":"[^,]*","avg":"[^,]*"}' `
     printf "%-10s\t%-24s\t%-10s%-24s\t%-10s%-10s\n" "线路" "最快节点" "延迟" "最慢节点" "延迟" "平均延迟"
-    echo -e "线路\t节点数目\t最快节点\t延迟\t最慢节点\t延迟\t平均延迟" >>${dir}/$logfilename
+    echo -e "线路\t节点数目\t最快节点\t延迟\t最慢节点\t延迟\t平均延迟" 
     while read line || [ -n "$line" ]
     do
 
@@ -35,18 +35,18 @@ ipipallpingsum()
     avg=`echo "$line" | grep -oE '"avg":"[^,]*"' | sed 's/"//g' | awk -F ":" '{print $2}'`
 
     printf "%-10s\t%-24s\t%-10s%-24s\t%-10s%-10s\n" "$key" "$min_name" "$min_speed" "$max_name" "$max_speed" "$avg"
-    echo -e "$key\t$count\t$min_name\t$min_speed\t$max_name\t$max_speed\t$avg" >>${dir}/$logfilename
+    echo -e "$key\t$count\t$min_name\t$min_speed\t$max_name\t$max_speed\t$avg" 
     done < <(echo "$t")
-    echo "===ping show end===" >>${dir}/$logfilename
-    echo "" >>${dir}/$logfilename
+    echo "===ping show end===" 
+    echo "" 
 }
 
 ipipallpinglog()
 {
     t=`grep -oE '<script>parent\.call_ping\([^<]*\);<\/script>' ./allping.log | sed 's@"text":"[^"]*",@@g'  | sed 's@"link_url":"[^"]*"@@g' | sed 's@"link_name":"[^"]*",@@g'`
     t=`echo -e "$t" | sed -r 's@<script>parent\.call_ping\(([^<]*)\);<\/script>@\1@g'`
-    echo "===all ping start===" >>${dir}/$logfilename
-    echo "id\tping的地点\tIP\tIP所在地\t丢包率\tMIX\tMAX\t延迟\tTTL" >>${dir}/$logfilename
+    echo "===all ping start===" 
+    echo "id\tping的地点\tIP\tIP所在地\t丢包率\tMIX\tMAX\t延迟\tTTL" 
     while read line || [ -n "$line" ]
     do 
     id=`echo "$line" | grep -oE '"id":[0-9]+' | awk -F ":" '{print $2}'`
@@ -59,8 +59,8 @@ ipipallpinglog()
     rtt_avg=`echo "$line" | grep -oE '"rtt_avg":"[^,]*"' | sed 's/"//g' | awk -F ":" '{print $2}'`
     ttl=`echo "$line" | grep -oE '"ttl":"[^,]*"' | sed 's/"//g' | awk -F ":" '{print $2}'`
 
-    echo -e "$id\t$name\t$ip\t$ip_area\t$loss\t$rtt_min\t$rtt_max\t$rtt_avg\t$ttl" >>${dir}/$logfilename
+    echo -e "$id\t$name\t$ip\t$ip_area\t$loss\t$rtt_min\t$rtt_max\t$rtt_avg\t$ttl" 
     done < <(echo -e "$t")
-    echo "===all ping end===" >>${dir}/$logfilename
-    echo "" >>${dir}/$logfilename
+    echo "===all ping end===" 
+    echo "" 
 }
