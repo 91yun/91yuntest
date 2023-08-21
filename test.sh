@@ -24,7 +24,7 @@ done
 
 #默认参数
 if [ "$_included_benchmarks" == "" ]; then
-	_included_benchmarks="io,bandwidth,download,backtraceroute,unlock"
+	_included_benchmarks="io,bandwidth,chinabw,download,backtraceroute,unlock"
 fi
 
 _included_benchmarks="systeminfo,"${_included_benchmarks}
